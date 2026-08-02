@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ちびすけ 禁煙</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #1a1a1a;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "メイリオ", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        /* 🚭 アイコン */
+        .icon {
+            font-size: 5rem;
+            line-height: 1;
+            margin-bottom: 24px;
+            display: block;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.06));
+        }
+
+        /* 「ちびすけ 禁煙」テキスト */
+        .title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #555555;
+            letter-spacing: 0.15em;
+            margin-bottom: 20px;
+            padding-left: 0.15em; /* letter-spacingによる右寄りの調整 */
+        }
+
+        /* 「〇日目」エリア */
+        .day-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 4px;
+            margin-top: 10px;
+        }
+
+        /* 数字部分 */
+        .day-number {
+            font-size: 7rem;
+            font-weight: 800;
+            color: #111111;
+            line-height: 0.9;
+            font-feature-settings: "palt";
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            letter-spacing: -0.03em;
+        }
+
+        /* 「日目」部分 */
+        .day-unit {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #333333;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="icon">🚭</div>
+        <div class="title">ちびすけ 禁煙</div>
+        <div class="day-wrapper">
+            <span class="day-number" id="day-count">1</span>
+            <span class="day-unit">日目</span>
+        </div>
+    </div>
+
+    <script>
+        // 8月1日を開始日（1日目）として設定
+        const nowYear = new Date().getFullYear();
+        const startDate = new Date(`${nowYear}-08-01T00:00:00`);
+
+        function updateCounter() {
+            const now = new Date();
+            const diffMs = now - startDate;
+
+            if (diffMs < 0) {
+                document.getElementById('day-count').innerText = "0";
+                return;
+            }
+
+            // 8/1を1日目として日数計算
+            const days = Math.floor(diffMs / (1000 * 60 * 60 * 24)) + 1;
+            document.getElementById('day-count').innerText = days;
+        }
+
+        updateCounter();
+    </script>
+</body>
+</html>
