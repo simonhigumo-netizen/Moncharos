@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ちびすけ 禁煙</title>
-
+    <title>ちびすけ禁煙カウンター</title>
     <!-- 共有したときの説明・ファビコン(🚭) -->
     <meta name="description" content="ちびすけの禁煙、応援中！">
-    <meta property="og:title" content="ちびすけ 禁煙">
+    <meta property="og:title" content="ちびすけ禁煙カウンター">
     <meta property="og:description" content="ちびすけの禁煙、応援中！">
     <meta property="og:type" content="website">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚭</text></svg>">
-
     <!-- Google Fonts から丸みのあるかわいいフォント「M PLUS Rounded 1c」を読み込み -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -115,50 +113,156 @@
         // ▼▼▼ 禁煙をはじめた日（1日目）をここで設定 ▼▼▼
         // 年を固定しておくと、年をまたいでもずっと数え続けます。
         const startDate = new Date("2026-08-01T00:00:00");
-
         // 日数に応じて変わる応援メッセージ（節目でお祝い）
         const milestones = [
-            { day: 1,   msg: "はじめの一歩、ふみだせたね！🌱" },
-            { day: 2,   msg: "つらい時期をがんばってる、えらい！💪" },
-            { day: 3,   msg: "ヤマを越えたよ！この調子✨" },
-            { day: 7,   msg: "1週間達成！すごすぎる🎉" },
-            { day: 14,  msg: "2週間！味やニオイが戻ってくる頃だよ🍚" },
-            { day: 30,  msg: "1ヶ月達成！ほんとうにすごい🏅" },
-            { day: 90,  msg: "3ヶ月！肺も元気になってきてるよ🌿" },
-            { day: 180, msg: "半年達成！もう立派な習慣だね😊" },
-            { day: 365, msg: "1年おめでとう！最高だよ🎊" },
-            { day: 730, msg: "2年！ちびすけを心から尊敬します👏" },
-        ];
 
+{ day: 1,   msg: "まず、" },
+{ day: 2,   msg: "ちびすけ" },
+{ day: 3,   msg: "の" },
+{ day: 4,   msg: "肺" },
+{ day: 5,   msg: "を" },
+{ day: 6,   msg: "ぷるぷる" },
+{ day: 7,   msg: "の" },
+{ day: 8,   msg: "極上" },
+{ day: 9,   msg: "絹ごし豆腐" },
+{ day: 10,  msg: "で" },
+{ day: 11,  msg: "みちみち" },
+{ day: 12,  msg: "に" },
+{ day: 13,  msg: "満たし、" },
+{ day: 14,  msg: "土・日・祝" },
+{ day: 15,  msg: "に" },
+{ day: 16,  msg: "発生する" },
+{ day: 17,  msg: "「酒気帯びのげっぷっぷ」" },
+{ day: 18,  msg: "の" },
+{ day: 19,  msg: "衝撃波" },
+{ day: 20,  msg: "を" },
+{ day: 21,  msg: "取り込む。" },
+{ day: 22,  msg: "やがて" },
+{ day: 23,  msg: "ちびすけ" },
+{ day: 24,  msg: "の" },
+{ day: 25,  msg: "肺" },
+{ day: 26,  msg: "は" },
+{ day: 27,  msg: "いちご" },
+{ day: 28,  msg: "へと" },
+{ day: 29,  msg: "変化していく" },
+{ day: 30,  msg: "ため、" },
+{ day: 31,  msg: "その間に" },
+{ day: 32,  msg: "たくあん" },
+{ day: 33,  msg: "を" },
+{ day: 34,  msg: "部屋" },
+{ day: 35,  msg: "の" },
+{ day: 36,  msg: "中心" },
+{ day: 37,  msg: "に" },
+{ day: 38,  msg: "置き、" },
+{ day: 39,  msg: "一人に" },
+{ day: 40,  msg: "しておく。" },
+{ day: 41,  msg: "ちびすけ" },
+{ day: 42,  msg: "が" },
+{ day: 43,  msg: "「やっぱり納豆がいい」" },
+{ day: 44,  msg: "と" },
+{ day: 45,  msg: "つぶやいた" },
+{ day: 46,  msg: "瞬間、" },
+{ day: 47,  msg: "部屋" },
+{ day: 48,  msg: "の" },
+{ day: 49,  msg: "中心" },
+{ day: 50,  msg: "で" },
+{ day: 51,  msg: "寂しく" },
+{ day: 52,  msg: "佇む" },
+{ day: 53,  msg: "たくあん" },
+{ day: 54,  msg: "が" },
+{ day: 55,  msg: "挨拶してくる。" },
+{ day: 56,  msg: "この" },
+{ day: 57,  msg: "タイミング" },
+{ day: 58,  msg: "を" },
+{ day: 59,  msg: "1秒" },
+{ day: 60,  msg: "でも" },
+{ day: 61,  msg: "逃す" },
+{ day: 62,  msg: "と、" },
+{ day: 63,  msg: "宇宙" },
+{ day: 64,  msg: "の" },
+{ day: 65,  msg: "ぬか床" },
+{ day: 66,  msg: "は" },
+{ day: 67,  msg: "単なる" },
+{ day: 68,  msg: "「お茶漬け」" },
+{ day: 69,  msg: "へと" },
+{ day: 70,  msg: "暴落する。" },
+{ day: 71,  msg: "そして" },
+{ day: 72,  msg: "仕上げに、" },
+{ day: 73,  msg: "目覚まし時計" },
+{ day: 74,  msg: "の" },
+{ day: 75,  msg: "アラーム音" },
+{ day: 76,  msg: "を" },
+{ day: 77,  msg: "チョコボール" },
+{ day: 78,  msg: "の" },
+{ day: 79,  msg: "CM" },
+{ day: 80,  msg: "に" },
+{ day: 81,  msg: "設定し、" },
+{ day: 82,  msg: "そのまま" },
+{ day: 83,  msg: "眠り" },
+{ day: 84,  msg: "に" },
+{ day: 85,  msg: "落ちる。" },
+{ day: 86,  msg: "すると" },
+{ day: 87,  msg: "どうでしょう。" },
+{ day: 88,  msg: "暗闇" },
+{ day: 89,  msg: "の" },
+{ day: 90,  msg: "中" },
+{ day: 91,  msg: "で" },
+{ day: 92,  msg: "膨張した" },
+{ day: 93,  msg: "妄想" },
+{ day: 94,  msg: "の" },
+{ day: 95,  msg: "旨味成分" },
+{ day: 96,  msg: "が、" },
+{ day: 97,  msg: "ちびすけ" },
+{ day: 98,  msg: "の" },
+{ day: 99,  msg: "耳たぶ" },
+{ day: 100, msg: "の" },
+{ day: 101, msg: "裏側" },
+{ day: 102, msg: "から、" },
+{ day: 103, msg: "じんわり" },
+{ day: 104, msg: "と" },
+{ day: 105, msg: "温かい" },
+{ day: 106, msg: "わたがし" },
+{ day: 107, msg: "と" },
+{ day: 108, msg: "なって" },
+{ day: 109, msg: "溢れ出し、" },
+{ day: 110, msg: "世界" },
+{ day: 111, msg: "は" },
+{ day: 112, msg: "無事" },
+{ day: 113, msg: "に" },
+{ day: 114, msg: "「あやめ雪かぶのぬか漬け」" },
+{ day: 115, msg: "として" },
+{ day: 116, msg: "再起動" },
+{ day: 117, msg: "が" },
+{ day: 118, msg: "完了" },
+{ day: 119, msg: "する" },
+{ day: 120, msg: "ので" },
+{ day: 121, msg: "ある。" }
+
+        ];
         function updateCounter() {
             const now = new Date();
             const diffMs = now - startDate;
-
             const countEl = document.getElementById('day-count');
             const msgEl = document.getElementById('message');
-
             if (diffMs < 0) {
                 countEl.innerText = "0";
-                msgEl.innerText = " ";
+                msgEl.innerText = "";
                 return;
             }
-
             // 8/1を1日目として日数計算
             const days = Math.floor(diffMs / (1000 * 60 * 60 * 24)) + 1;
             countEl.innerText = days;
-
-            // 今の日数で「到達済みの一番大きい節目」のメッセージを表示
-            let currentMsg = " ";
+            // その日までの断片をすべて連結して1つの文章にする
+            let currentMsg = "";
             for (const m of milestones) {
                 if (days >= m.day) {
-                    currentMsg = m.msg;
+                    currentMsg += m.msg;
                 } else {
                     break;
                 }
             }
             msgEl.innerText = currentMsg;
         }
-
         updateCounter();
         // ページを開いたままでも日付が変わったら自動更新（1分ごとにチェック）
         setInterval(updateCounter, 60 * 1000);
