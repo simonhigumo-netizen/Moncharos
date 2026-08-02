@@ -4,109 +4,164 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ちびすけ 禁煙</title>
+
+    <!-- 共有したときの説明・ファビコン(🚭) -->
+    <meta name="description" content="ちびすけの禁煙、応援中！">
+    <meta property="og:title" content="ちびすけ 禁煙">
+    <meta property="og:description" content="ちびすけの禁煙、応援中！">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚭</text></svg>">
+
+    <!-- Google Fonts から丸みのあるかわいいフォント「M PLUS Rounded 1c」を読み込み -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         body {
             background-color: #ffffff;
-            color: #1a1a1a;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Hiragino Kaku Gothic ProN", "メイリオ", sans-serif;
+            color: #333333;
+            font-family: 'M PLUS Rounded 1c', "Hiragino Maru Gothic ProN", "ヒラギノ丸ゴ ProN W4", "Comic Sans MS", sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 40px 20px;
+            overflow-x: hidden;
         }
-
         .container {
             text-align: center;
             width: 100%;
-            max-width: 480px;
+            max-width: 960px; /* PC用に大きく拡張 */
         }
-
         /* 🚭 アイコン */
         .icon {
-            font-size: 5rem;
+            font-size: 8rem; /* PC用にスケールアップ */
             line-height: 1;
-            margin-bottom: 24px;
+            margin-bottom: 25px;
             display: block;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.06));
+            filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.08));
         }
-
         /* 「ちびすけ 禁煙」テキスト */
         .title {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: #555555;
+            font-size: 3rem; /* PC用にスケールアップ */
+            font-weight: 800;
+            color: #4a4a4a;
             letter-spacing: 0.15em;
             margin-bottom: 20px;
-            padding-left: 0.15em; /* letter-spacingによる右寄りの調整 */
+            padding-left: 0.15em;
         }
-
+        /* 「ちびすけ」部分の色指定 (#1B365D) */
+        .name-highlight {
+            color: #1B365D;
+        }
         /* 「〇日目」エリア */
         .day-wrapper {
             display: flex;
             justify-content: center;
             align-items: baseline;
-            gap: 4px;
+            gap: 12px;
             margin-top: 10px;
         }
-
         /* 数字部分 */
         .day-number {
-            font-size: 7rem;
-            font-weight: 800;
-            color: #111111;
+            font-size: 14rem; /* PC用に特大化 */
+            font-weight: 900;
+            color: #2b2b2b;
             line-height: 0.9;
-            font-feature-settings: "palt";
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             letter-spacing: -0.03em;
         }
-
         /* 「日目」部分 */
         .day-unit {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #333333;
+            font-size: 4rem; /* PC用にスケールアップ */
+            font-weight: 800;
+            color: #4a4a4a;
             letter-spacing: 0.05em;
+        }
+        /* 応援メッセージ */
+        .message {
+            margin-top: 40px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #1B365D;
+            line-height: 1.6;
+            letter-spacing: 0.03em;
+        }
+        /* 画面幅が狭い場合の自動調整 */
+        @media (max-width: 768px) {
+            .icon { font-size: 5.5rem; }
+            .title { font-size: 1.8rem; }
+            .day-number { font-size: 7.5rem; }
+            .day-unit { font-size: 2.2rem; }
+            .message { font-size: 1.3rem; margin-top: 32px; }
         }
     </style>
 </head>
 <body>
-
     <div class="container">
         <div class="icon">🚭</div>
-        <div class="title">ちびすけ 禁煙</div>
+        <div class="title"><span class="name-highlight">ちびすけ</span> 禁煙</div>
         <div class="day-wrapper">
             <span class="day-number" id="day-count">1</span>
             <span class="day-unit">日目</span>
         </div>
+        <p class="message" id="message"></p>
     </div>
-
     <script>
-        // 8月1日を開始日（1日目）として設定
-        const nowYear = new Date().getFullYear();
-        const startDate = new Date(`${nowYear}-08-01T00:00:00`);
+        // ▼▼▼ 禁煙をはじめた日（1日目）をここで設定 ▼▼▼
+        // 年を固定しておくと、年をまたいでもずっと数え続けます。
+        const startDate = new Date("2026-08-01T00:00:00");
+
+        // 日数に応じて変わる応援メッセージ（節目でお祝い）
+        const milestones = [
+            { day: 1,   msg: "はじめの一歩、ふみだせたね！🌱" },
+            { day: 2,   msg: "つらい時期をがんばってる、えらい！💪" },
+            { day: 3,   msg: "ヤマを越えたよ！この調子✨" },
+            { day: 7,   msg: "1週間達成！すごすぎる🎉" },
+            { day: 14,  msg: "2週間！味やニオイが戻ってくる頃だよ🍚" },
+            { day: 30,  msg: "1ヶ月達成！ほんとうにすごい🏅" },
+            { day: 90,  msg: "3ヶ月！肺も元気になってきてるよ🌿" },
+            { day: 180, msg: "半年達成！もう立派な習慣だね😊" },
+            { day: 365, msg: "1年おめでとう！最高だよ🎊" },
+            { day: 730, msg: "2年！ちびすけを心から尊敬します👏" },
+        ];
 
         function updateCounter() {
             const now = new Date();
             const diffMs = now - startDate;
 
+            const countEl = document.getElementById('day-count');
+            const msgEl = document.getElementById('message');
+
             if (diffMs < 0) {
-                document.getElementById('day-count').innerText = "0";
+                countEl.innerText = "0";
+                msgEl.innerText = " ";
                 return;
             }
 
             // 8/1を1日目として日数計算
             const days = Math.floor(diffMs / (1000 * 60 * 60 * 24)) + 1;
-            document.getElementById('day-count').innerText = days;
+            countEl.innerText = days;
+
+            // 今の日数で「到達済みの一番大きい節目」のメッセージを表示
+            let currentMsg = " ";
+            for (const m of milestones) {
+                if (days >= m.day) {
+                    currentMsg = m.msg;
+                } else {
+                    break;
+                }
+            }
+            msgEl.innerText = currentMsg;
         }
 
         updateCounter();
+        // ページを開いたままでも日付が変わったら自動更新（1分ごとにチェック）
+        setInterval(updateCounter, 60 * 1000);
     </script>
 </body>
 </html>
